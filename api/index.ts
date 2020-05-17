@@ -1,8 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 import bookRouter from './routers/bookRouter';
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.set('port', process.env.PORT || 3000);
 app.use('/api', bookRouter);

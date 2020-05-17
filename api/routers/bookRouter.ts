@@ -1,16 +1,16 @@
 import { Router } from 'express';
-import booksHandler from './handlers/booksHandler';
-import booksByIdHandler from './handlers/booksByIdHandler';
+import getBooksHandler from './handlers/getBooksHandler';
+import postBooksHandler from './handlers/postBooksHandler';
+import getBooksByIdHandler from './handlers/getBooksByIdHandler';
 
 
 const router = Router();
 
 router.route('/books')
-    .get(booksHandler)
-    .put(booksHandler);
+    .post(postBooksHandler)
+    .get(getBooksHandler);
 
 router.route('/books/:bookId')
-    .get(booksByIdHandler)
-    .put(booksByIdHandler);
+    .get(getBooksByIdHandler);
 
 export default router;
