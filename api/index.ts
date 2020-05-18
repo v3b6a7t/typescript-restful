@@ -1,7 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import bookRouter from './routers/bookRouter';
+import Book from './models/bookModel';
+import roters from './routers';
 
 const app = express();
 
@@ -9,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set('port', process.env.PORT || 3000);
-app.use('/api', bookRouter);
+app.use('/api/books', roters(Book));
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set("useUnifiedTopology", true);
