@@ -7,7 +7,9 @@
   "scripts": {
     "start": "nodemon",
     "lint": "eslint --ext .ts,.js .; exit 0",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "build": "npm run clear & tsc; exit 0",
+    "clear": "rimraf types/api & rimraf dist"
   },
   "keywords": [],
   "author": "Robert Bartlewski",
@@ -26,6 +28,7 @@
     "eslint": "^7.0.0",
     "husky": "^4.2.5",
     "nodemon": "^2.0.3",
+    "rimraf": "^3.0.2",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.2"
   },
