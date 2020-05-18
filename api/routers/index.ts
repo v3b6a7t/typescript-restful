@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
 import { Model, Document } from 'mongoose';
-import getQuery from './support/getQueryProcessed'
+import getQuery from './support/getQuery';
 
 
 export default <T extends Model<Document>>(model: T): Router => {
