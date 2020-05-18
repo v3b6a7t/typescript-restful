@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set('port', process.env.PORT || 3000);
-app.use('/api/books', roters(Book));
+app.use('/api/books', roters<typeof Book>(Book));
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set("useUnifiedTopology", true);
