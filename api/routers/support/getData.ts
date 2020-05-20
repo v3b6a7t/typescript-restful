@@ -10,9 +10,9 @@ export default <D extends object, M extends ModelType>(data: D, model: M, empty 
                         }, {})
     
     const emptyData = (): object => Object.keys(model.schema.paths).reduce((succ, key) => {
-        if (!forbidden.includes(key) && !(key in data)) return Object.assign(succ, { [key]: undefined });
-        return succ;
-    }, {})
+                            if (!forbidden.includes(key) && !(key in data)) return Object.assign(succ, { [key]: undefined });
+                            return succ;
+                        }, {})
 
     return Object.assign(
                 queryData(), 
