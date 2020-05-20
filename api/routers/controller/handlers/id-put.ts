@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { RequestExt } from '../interfaces/extended'
+import { RequestExt } from '../../interfaces/extended'
 
 export default ({ docProcessed }: RequestExt, res: Response): void => {
     if (docProcessed) {

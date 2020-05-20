@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { ModelType } from '../interfaces/types';
-import getData from '../support/getData';
+import { ModelType } from '../../interfaces/types';
+import getData from '../../support/getData';
 
 export default <M extends ModelType>(model: M) => {
     return ({ query }: Request, res: Response): void => {
