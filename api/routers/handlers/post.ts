@@ -4,7 +4,7 @@ import getData from '../support/getData';
 
 export default <M extends ModelType>(model: M) => {
     return (req: Request, res: Response): void => {
-        const data = getData<typeof req.query, M>(req.query, model);
+        const data = getData<typeof req.body, M>(req.body, model);
         const instance = new model(data);
         instance.save()
             .then(() => res.status(201).json(instance))
