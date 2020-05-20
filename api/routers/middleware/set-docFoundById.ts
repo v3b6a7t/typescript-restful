@@ -1,9 +1,9 @@
-import { Model, Document } from 'mongoose';
 import { Response, NextFunction } from 'express';
-import { ExtendedRequest } from '../interfaces';
+import { ModelType } from '../interfaces/types';
+import { RequestExt } from '../interfaces/extended';
 
-export default <M extends Model<Document>>(model: M) => {
-    return (req: ExtendedRequest, res: Response, next: NextFunction): void => {
+export default <M extends ModelType>(model: M) => {
+    return (req: RequestExt, res: Response, next: NextFunction): void => {
         model.findById(req.params.id)
             .exec()
             .then(doc => {

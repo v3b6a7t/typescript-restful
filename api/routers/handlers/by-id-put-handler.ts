@@ -1,7 +1,7 @@
 import { Response }  from 'express';
-import { ExtendedRequest } from '../interfaces'
+import { RequestExt } from '../interfaces/extended'
 
-export default (req: ExtendedRequest, res: Response): void => {
+export default (req: RequestExt, res: Response): void => {
     if (req.docProcessed) {
         req.docProcessed.save()
             .then(() => res.status(201).json(req.docProcessed))

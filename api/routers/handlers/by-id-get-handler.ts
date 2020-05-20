@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { ExtendedRequest } from '../interfaces';
+import { RequestExt } from '../interfaces/extended';
 
-export default (req: ExtendedRequest, res: Response): void => {
+export default (req: RequestExt, res: Response): void => {
     res.status(200).json(req.docFoundById);
 }
