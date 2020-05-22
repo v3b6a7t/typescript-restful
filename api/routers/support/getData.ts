@@ -1,21 +1,17 @@
 import { ModelType } from '../interfaces/types';
 
-const forbidden: string[] = ['_id', '__v'];
-
 export default <D extends object, M extends ModelType>(data: D, model: M, empty = false): object => {
-    
-    const queryData = (): object => Object.entries(data).reduce((succ, [key, val]) => {
-                            if (!forbidden.includes(key) && (key in model.schema.paths)) return Object.assign(succ, { [key]: val });
-                            return succ;
-                        }, {})
-    
-    const emptyData = (): object => Object.keys(model.schema.paths).reduce((succ, key) => {
-                            if (!forbidden.includes(key) && !(key in data)) return Object.assign(succ, { [key]: undefined });
-                            return succ;
-                        }, {})
+
+    const queryData = (): object => Object.entries(data).reduce((succ, [key, val]) => (
+        (key in model.schema.obj) ? Object.assign(succ, { [key]: val }) : succ
+    ), {})
+
+    const emptyData = (): object => Object.keys(model.schema.obj).reduce((succ, key) => (
+        (key in data) ? succ : Object.assign(succ, { [key]: undefined })
+    ), {})
 
     return Object.assign(
-                queryData(), 
-                empty? emptyData() : {}
-            );
+        queryData(),
+        empty ? emptyData() : {}
+    );
 }
