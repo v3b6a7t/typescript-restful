@@ -6,12 +6,14 @@ import Book from './models/bookModel';
 import roters from './routers';
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set('port', process.env.PORT || 3000);
 
 (async () => {
+    // Init Express
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.set('port', process.env.PORT || 3000);
     app.use('/api/books', await roters<typeof Book>(Book));
+    // Init Mongoose
     mongoose.set('useNewUrlParser', true);
     mongoose.set("useUnifiedTopology", true);
     mongoose.set('useFindAndModify', false);
