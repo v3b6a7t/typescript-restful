@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
@@ -6,19 +7,20 @@ import roters from './routers';
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+(async () => {
+    // Init Express
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.set('port', process.env.PORT || 3000);
+    app.use('/api/books', await roters<typeof Book>(Book));
+    // Init Mongoose
+    mongoose.set('useNewUrlParser', true);
+    mongoose.set("useUnifiedTopology", true);
+    mongoose.set('useFindAndModify', false);
+    await mongoose.connect('mongodb://localhost:27017/bookAPI');
+})();
 
-app.set('port', process.env.PORT || 3000);
-app.use('/api/books', roters<typeof Book>(Book));
-
-mongoose.set('useNewUrlParser', true);
-mongoose.set("useUnifiedTopology", true);
-mongoose.set('useFindAndModify', false);
-
-mongoose.connect('mongodb://localhost:27017/bookAPI');
 const db = mongoose.connection;
-
 db.on('error', console.error);
 db.on('open', () => {
     app.listen(app.get('port'), () => {
