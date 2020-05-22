@@ -5,9 +5,9 @@ import setDocProcessed from './middleware/set-docProcessed';
 import controller from './controller';
 
 // GENERIC ROUTER
-export default <M extends ModelType>(model: M): Router => {
+export default async <M extends ModelType>(model: M): Promise<Router> => {
     const router = Router();
-    const rest = controller<M>(model);
+    const rest = await controller<M>(model);
 
     // ROUTE (default)
     router.route('/')

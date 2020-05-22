@@ -14,7 +14,7 @@ export const BookSchema = new Schema<BookInterface>({
     read: { type: Boolean, default: false }
 });
 
-const BookModel = mongoose.model('books', BookSchema);
+export const BookModel = mongoose.model('books', BookSchema);
 
 export type BookType = typeof BookModel;
 
