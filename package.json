@@ -1,8 +1,8 @@
 {
-  "name": "rest-api",
+  "name": "typescript-restful",
   "version": "0.0.1",
   "private": true,
-  "description": "The REST Api lerning",
+  "description": "The TypeScript RESTful Api",
   "main": "app.ts",
   "scripts": {
     "start": "nodemon",
