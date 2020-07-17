@@ -1,2 +1,3 @@
-# ps-restfull
-RESTful Web Services with NodeJS and Express
+# Typescript RESTful
+
+RESTful Web Services with MongoDB, NodeJS and Express
