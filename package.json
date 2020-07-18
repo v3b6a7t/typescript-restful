@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "The TypeScript RESTful Api",
-  "main": "app.ts",
+  "main": "api/index.ts",
   "scripts": {
     "start": "nodemon",
     "lint": "eslint --ext .ts,.js .; exit 0",
