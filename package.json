@@ -1,6 +1,6 @@
 {
   "name": "typescript-restful",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "The TypeScript RESTful Api",
   "main": "api/index.ts",
