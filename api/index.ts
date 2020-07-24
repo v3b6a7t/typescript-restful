@@ -25,7 +25,7 @@ const db = mongoose.connection;
 db.on('error', console.error);
 db.on('open', () => {
     app.listen(config.PORT, () => {
-        console.log(`Server is litening on ${config.SERVER_URL}`);
+        console.log(`Server is litening on ${config.SERVER_URL}api/books`);
     })
 });
 
