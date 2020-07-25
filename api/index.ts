@@ -4,6 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import Book from './models/bookModel';
+import Author from './models/authorModel';
 import genericRouter from './router/generic';
 
 const app = express();
@@ -13,7 +14,9 @@ const app = express();
     app.set('port', config.PORT);
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
+    // Init Routers
     app.use('/api/books', await genericRouter<typeof Book>(Book));
+    app.use('/api/author', await genericRouter<typeof Author>(Author));
     // Init Mongoose
     mongoose.set('useNewUrlParser', true);
     mongoose.set("useUnifiedTopology", true);
