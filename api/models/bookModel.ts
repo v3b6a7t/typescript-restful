@@ -16,7 +16,7 @@ export const BookSchema = new Schema<BookInterface>({
             min: 3,
             max: 50,
             match: /^\p{Lu}[\p{L}\p{N}\p{P}\p{Z}]+$/gu,
-            info: "Enter your full name or initials and surname"
+            info: "Title contains illegal characters"
         })
     },
     author: {
@@ -26,7 +26,7 @@ export const BookSchema = new Schema<BookInterface>({
             min: 3,
             max: 50,
             match: /^((\p{Lu}\.|\p{Lu}[\p{Ll}]+)\s?){1,3}\s(\p{Lu}[\p{Ll}\x2D]+){1,2}$/gu,
-            info: "Title contains illegal characters"
+            info: "Enter the name or initials and the last name of the author"
         })
     },
     genre: {
