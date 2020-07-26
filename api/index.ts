@@ -16,7 +16,7 @@ const app = express();
     app.use(bodyParser.json());
     // Init Routers
     app.use('/api/books', await genericRouter<typeof Book>(Book));
-    app.use('/api/author', await genericRouter<typeof Author>(Author));
+    app.use('/api/authors', await genericRouter<typeof Author>(Author));
     // Init Mongoose
     mongoose.set('useNewUrlParser', true);
     mongoose.set("useUnifiedTopology", true);
@@ -29,6 +29,7 @@ db.on('error', console.error);
 db.on('open', () => {
     app.listen(config.PORT, () => {
         console.log(`Server is litening on ${config.SERVER_URL}api/books`);
+        console.log(`Server is litening on ${config.SERVER_URL}api/authors`);
     })
 });
 
