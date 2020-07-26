@@ -1,12 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import stringValidator from './validator/stringValidator'
+import mongooseAutopopulate from 'mongoose-autopopulate';
+
 
 export interface BookInterface extends Document {
     title: string;
-    author: string;
+    author: Array<Schema.Types.ObjectId>;
     genre: string;
     read: boolean;
 }
+
 
 export const BookSchema = new Schema<BookInterface>({
     title: {
@@ -19,16 +22,11 @@ export const BookSchema = new Schema<BookInterface>({
             info: "Title contains illegal characters"
         })
     },
-    author: {
-        type: String,
-        required: true,
-        validate: stringValidator({
-            min: 3,
-            max: 50,
-            match: /^((\p{Lu}\.|\p{Lu}[\p{Ll}]+)\s?){1,3}\s(\p{Lu}[\p{Ll}\x2D]+){1,2}$/gu,
-            info: "Enter the name or initials and the last name of the author"
-        })
-    },
+    author: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Author',
+        autopopulate: true
+    }],
     genre: {
         type: String,
         required: true,
@@ -42,7 +40,13 @@ export const BookSchema = new Schema<BookInterface>({
     read: { type: Boolean, default: false }
 });
 
-export const BookModel = mongoose.model('books', BookSchema);
+
+
+BookSchema.plugin(mongooseAutopopulate)
+
+
+
+export const BookModel = mongoose.model<BookInterface & Document>('Books', BookSchema);
 
 export type BookType = typeof BookModel;
 
