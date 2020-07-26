@@ -30,7 +30,7 @@ export const AuthorSchema = new Schema<AuthorInterface>({
 });
 
 
-export const AuthorModel = mongoose.model('author', AuthorSchema);
+export const AuthorModel = mongoose.model<AuthorInterface & Document>('Author', AuthorSchema);
 
 export type BookType = typeof AuthorModel;
 
