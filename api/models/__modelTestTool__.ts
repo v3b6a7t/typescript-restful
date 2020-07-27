@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 
-export default <M extends ModelType>(Model: M) => {
+export default <M extends ModelType>(Model: M): void => {
 
     describe('MODELS TESTING', () => {
         describe(`Model "${Model.modelName}" testing with method save() and empty data`, () => {
