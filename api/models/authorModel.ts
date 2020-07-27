@@ -1,9 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import stringValidator from './validator/stringValidator'
+import mongooseAutopopulate from 'mongoose-autopopulate';
 
 export interface AuthorInterface extends Document {
     name: string;
     lastname: string;
+    book: Array<Schema.Types.ObjectId>;
 }
 
 export const AuthorSchema = new Schema<AuthorInterface>({
@@ -26,8 +28,16 @@ export const AuthorSchema = new Schema<AuthorInterface>({
             match: /^(\p{Lu}[\p{Ll}\x20\x2D]+){1,2}$/gu,
             info: "Enter last name"
         })
-    }
+    },
+    book: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Book',
+        autopopulate: { maxDepth: 1 }
+    }]
 });
+
+
+AuthorSchema.plugin(mongooseAutopopulate);
 
 
 export const AuthorModel = mongoose.model<AuthorInterface & Document>('Author', AuthorSchema);

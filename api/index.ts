@@ -32,7 +32,3 @@ db.on('open', () => {
         console.log(`Server is litening on ${config.SERVER_URL}api/authors`);
     })
 });
-
-
-
-
