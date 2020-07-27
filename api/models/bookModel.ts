@@ -46,7 +46,7 @@ BookSchema.plugin(mongooseAutopopulate)
 
 
 
-export const BookModel = mongoose.model<BookInterface & Document>('Books', BookSchema);
+export const BookModel = mongoose.model<BookInterface & Document>('Book', BookSchema);
 
 export type BookType = typeof BookModel;
 
