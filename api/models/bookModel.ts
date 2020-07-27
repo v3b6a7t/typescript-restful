@@ -25,7 +25,7 @@ export const BookSchema = new Schema<BookInterface>({
     author: [{
         type: Schema.Types.ObjectId,
         ref: 'Author',
-        autopopulate: true
+        autopopulate: { maxDepth: 1 }
     }],
     genre: {
         type: String,
