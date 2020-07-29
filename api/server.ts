@@ -28,16 +28,11 @@ const db = mongoose.connection;
 db.on('error', console.error);
 db.on('open', () => {
     app.listen(config.PORT, () => {
-<<<<<<< HEAD:api/index.ts
-        console.log(`Server is litening on ${config.SERVER_URL}api/books`);
-        console.log(`Server is litening on ${config.SERVER_URL}api/authors`);
-=======
         console.log(
             `\n`,
             `Server #${process.pid} is litening on port ${config.PORT}`,
             `\n\t${config.SERVER_URL}api/books`,
             `\n\t${config.SERVER_URL}api/authors`
         );
->>>>>>> dev:api/server.ts
     })
 });
