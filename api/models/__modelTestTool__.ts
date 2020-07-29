@@ -11,8 +11,8 @@ export default <M extends ModelType>(Model: M): void => {
                 const model = new Model({});
                 model.save()
                     .catch((err: Error) => {
-                        const re = /([\w]+)(?=`)/g;
-                        const mached = err.message.match(re);
+                        const test = /([\w]+)(?=`)/g;
+                        const mached = err.message.match(test);
                         if (mached) {
                             const result = Object.keys(model.schema.obj)
                                 .filter(key => !!model.schema.obj[key].required)
