@@ -1,4 +1,4 @@
-import { ModelType } from '../router/interfaces/types'
+import { ModelType } from '../../../router/interfaces/types'
 import { expect } from 'chai';
 import 'mocha';
 
@@ -11,12 +11,12 @@ export default <M extends ModelType>(Model: M): void => {
                 const model = new Model({});
                 model.save()
                     .catch((err: Error) => {
-                        const test = /([\w]+)(?=`)/g;
+                        const test = /([\w]+)(?=`)/gi;
                         const mached = err.message.match(test);
                         if (mached) {
                             const result = Object.keys(model.schema.obj)
                                 .filter(key => !!model.schema.obj[key].required)
-                                .reduce((succ, curr) => succ && !!mached.includes(curr), true)
+                                .reduce((succ, curr) => succ && mached.includes(curr), true)
                             expect(result).to.equal(true);
                             done()
                         }

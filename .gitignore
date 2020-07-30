@@ -1,5 +1,5 @@
 # RESTfull Application
-.develop/
+# .develop/
 types/*.d.ts
 types/api/
 # Logs
